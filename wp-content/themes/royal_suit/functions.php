@@ -403,3 +403,12 @@ add_filter('posts_search', '__search_by_title_only', 500, 2);
 
 //**************add category custom field*************
 
+function my_acf_google_map_api( $api ){
+
+    $api['key'] = 'AIzaSyBrjmQ-IA5gda1QUk9_cMYYIc0VWPrBUE0';
+
+    return $api;
+
+}
+
+add_filter('acf/fields/google_map/api', 'my_acf_google_map_api');
