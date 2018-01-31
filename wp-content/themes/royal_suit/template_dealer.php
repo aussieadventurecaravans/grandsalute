@@ -472,11 +472,10 @@ $mark_points = str_replace('&#039;', '', json_encode($mark_points));
     $opening_hours = isset($opening_hours) ? $opening_hours : "";
     ?>
     <li class="dl_ulli" data-lat="<?php echo $lati; ?>" data-lang="<?php echo $longt; ?>">
-                                    <span class="uppercase ttl1"><?php echo $com_nm; ?></span><p><?php echo $addr ?></p><p>T: &nbsp;<?php echo $tel_nm; ?></p><p>E:<a href="mailto:<?php echo $em_ad; ?>"><?php echo $em_ad; ?></a> </p> <p>W:<a href="http://<?php echo $web_ad; ?>"> <?php echo $web_ad; ?></a></p><p>Opening Hours:<?php echo $opening_hours; ?></p>
+                                    <span class="uppercase ttl1"><?php echo $com_nm; ?></span><p><?php echo $addr ?></p><p>T: &nbsp;<?php echo $tel_nm; ?></p><p>E:<a href="mailto:<?php echo $em_ad; ?>"> <?php echo $em_ad; ?></a> </p> <p>W:<a href="http://<?php echo $web_ad; ?>"> <?php echo $web_ad; ?></a></p>
+                                    <p>Opening Hours: <?php echo $opening_hours; ?></p>
                                 </li>
- <?php   
-}
-                                ?>
+    <?php }  ?>
 
                             </ul>
                         </div>
