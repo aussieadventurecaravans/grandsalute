@@ -533,7 +533,7 @@ if ($product_gallery_image != '') {
 ================================================== -->
 
 <?php if (get_field('download_link', $p_id) != '') { ?>
-    <div class="product-brochure" id="brochure" style="padding-top:70px">
+    <div class="product-brochure" id="brochure">
         <div class="container ">
             <div class="row">
                 <div class="">
@@ -551,119 +551,14 @@ if ($product_gallery_image != '') {
 <input class="path_link" type="hidden" value="<?php echo bloginfo('template_url'); ?>"/>
 <div class="product-wheretobuy" id="wheretobuy">
     <div class="container ">
-        <div class="row"><div class="header-wrapper"><h2>Where to buy</h2></div></div>
-        <div class="col-sm-5 deal_view EqHeightDiv1 sm_pd deal_view_hover">
-            <?php
-            $post_id = $post->ID;
-            $query_ = array();
-            $dealer_lst = get_field('dealers_list', $post_id);
-
-            if (isset($dealer_lst)) {
-                foreach ($dealer_lst as $p_id4) {
-                    $ids_a = $p_id4->ID;
-                    $ids_a = array($ids_a);
-                    $ids_a = implode(',', $ids_a);
-                    $key = '';
-                    $args = array(
-                        'orderby' => 'post_date',
-                        'category' => '',
-                        'order' => 'DESC',
-                        'post_type' => 'dealer',
-                        'post_status' => 'publish',
-                        'include' => $ids_a
-                    );
-                    $post_ids = get_posts($args);
-                    foreach ($post_ids as $_post1) {
-                        if (has_post_thumbnail($_post1->ID)) {
-                            $url = wp_get_attachment_image_src(get_post_thumbnail_id($_post1->ID), 'full');
-                        }
-                        $sin_p = $_post1->ID;
-                        $address = get_field('address_d', $sin_p);
-                        $address1 = $address['address'];
-                        $lat = $address['lat'];
-                        $lng = $address['lng'];
-                        $c_nm = get_field('company_name', $sin_p);
-                        $telephone_d = get_field('telephone_d', $sin_p);
-                        $email_d = get_field('email_d', $sin_p);
-                        $webiste_d = get_field('webiste_d', $sin_p);
-                        $query_[] = array($address1, $lat, $lng, $key, $c_nm, $telephone_d, $email_d, $webiste_d);
-                        $dealer_lgo = get_field('dealer_logo', $sin_p);
-                        
-                        $query_ = str_replace('&#039;', '', json_encode($query_));
-                        ?>
-                        <div class="company-info">
-                            <div class="col-md-5 no_pd">
-                <!--                <img src="<?php //echo base_url('timthumb.php')  ?>?src=<?php //echo $dealer_lgo['url']  ?>&h=50&w=50" class="img-responsive" alt="Responsive image" align=left>-->
-                                <img src="<?php echo $dealer_lgo['url']; ?>" class="img-responsive" alt="Responsive image" align=left>
-                <!--                <img src="<?php // echo get_template_directory_uri()  ?>/img/wheretobuy-logo.png" class="img-responsive" alt="Responsive image" align=left>-->
-                            </div>
-                            <div class="col-md-7 no_pd">
-                                <h5><?php echo $c_nm; ?></h5>
-                                <p style="margin-bottom:0;"><?php echo $address1; ?></br>
-                                    T: <?php echo $telephone_d; ?></br>
-                                    E: <?php echo $email_d; ?></br>
-                                    W: <a href="<?php echo $webiste_d; ?>" target="_blank"><?php echo $webiste_d; ?></a>
-                                </p>
-                            </div>
-                        </div>
-
-                        <?php
-                    }
-                }
-            }
-            ?>
-            
-            <script type="text/javascript">     
-                google.maps.event.addDomListener(window, 'load', init);
-                function init() {
-                    //        console.log('saasas');
-                    var locations = JSON.parse('<?php echo $query_; ?>');
-                    var mapOptions = {
-                        zoom: 4,
-                        center: new google.maps.LatLng(-25.368268, 135.357241), // australia
-                        styles: [{"featureType": "water", "elementType": "geometry", "stylers": [{"color": "#e9e9e9"}, {"lightness": 17}]}, {"featureType": "landscape", "elementType": "geometry", "stylers": [{"color": "#f5f5f5"}, {"lightness": 20}]}, {"featureType": "road.highway", "elementType": "geometry.fill", "stylers": [{"color": "#ffffff"}, {"lightness": 17}]}, {"featureType": "road.highway", "elementType": "geometry.stroke", "stylers": [{"color": "#ffffff"}, {"lightness": 29}, {"weight": 0.2}]}, {"featureType": "road.arterial", "elementType": "geometry", "stylers": [{"color": "#ffffff"}, {"lightness": 18}]}, {"featureType": "road.local", "elementType": "geometry", "stylers": [{"color": "#ffffff"}, {"lightness": 16}]}, {"featureType": "poi", "elementType": "geometry", "stylers": [{"color": "#f5f5f5"}, {"lightness": 21}]}, {"featureType": "poi.park", "elementType": "geometry", "stylers": [{"color": "#dedede"}, {"lightness": 21}]}, {"elementType": "labels.text.stroke", "stylers": [{"visibility": "on"}, {"color": "#ffffff"}, {"lightness": 16}]}, {"elementType": "labels.text.fill", "stylers": [{"saturation": 36}, {"color": "#333333"}, {"lightness": 40}]}, {"elementType": "labels.icon", "stylers": [{"visibility": "off"}]}, {"featureType": "transit", "elementType": "geometry", "stylers": [{"color": "#f2f2f2"}, {"lightness": 19}]}, {"featureType": "administrative", "elementType": "geometry.fill", "stylers": [{"color": "#fefefe"}, {"lightness": 20}]}, {"featureType": "administrative", "elementType": "geometry.stroke", "stylers": [{"color": "#fefefe"}, {"lightness": 17}, {"weight": 1.2}]}]
-                    };
-                    var mapElement = document.getElementById('map');
-                    var map = new google.maps.Map(mapElement, mapOptions);
-
-                    //        var infowindow = new google.maps.InfoWindow();
-                    var bounds = new google.maps.LatLngBounds();
-                    var marker, i;
-                    var iconBase = $('.path_link').val();
-                    for (i = 0; i < locations.length; i++) {
-                        marker = new google.maps.Marker({
-                            position: new google.maps.LatLng(locations[i][1], locations[i][2]),
-                            map: map,
-                            icon: iconBase + '/img/marker_new_small.png',
-                
-                        });
-
-                        bounds.extend(marker.position);
-                        //            google.maps.event.addListener(marker, 'click', (function(marker, i) {
-                        //                return function() {
-                        //                    infowindow.setContent('<div class="info_wrap"><div class="header"><div class="arrow-up"></div><h4 class="uppercase">DEALERSHIP DETAILS</h4></div><div class="details"><h4 class="uppercase">' + locations[i][4] + '</h4><div>T: ' + locations[i][5] + '</div><div>E: ' + locations[i][6] + '</div><div>W: ' + locations[i][7] + '</div><button type="submit" class="btn btn-default direct_bb">DIRECTIONS</button></div></div>');
-                        //                    infowindow.open(map, marker);
-                        //                }                   
-                        //            })(marker, i));
-                        //now fit the map to the newly inclusive bounds
-                        map.fitBounds(bounds);
-
-                        //(optional) restore the zoom level after the map is done scaling
-                        var listener = google.maps.event.addListener(map, "idle", function () {
-                            map.setZoom(11);
-                            google.maps.event.removeListener(listener);
-                        });
-                    }
-                }
-            </script>
-            <style>
-                .sing_map #map{
-                    height:145px;
-                }
-            </style>
+        <div class="row">
+            <div class="header-wrapper"><h2>Where to buy</h2>
+            </div>
         </div>
-        <div class="col-sm-7 sing_map EqHeightDiv1">
-            <div id="map" class="EqHeightDiv1" style="min-height:140px;width:100%;"></div>
+        <div class="row">
+            <div class="find-a-dealer-btn">
+                <p><a target="_blank" class="btn btn-lg btn-primary" href="/find-a-dealer" role="button">Find A Dealer</a></p>
+            </div>
         </div>
     </div> 
 </div>

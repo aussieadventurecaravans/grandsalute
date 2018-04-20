@@ -5473,3 +5473,45 @@ div.spec_cont_tab-tab div.spec_cont_tab-tab-content:not(.active){
         margin-top: 440px !important;
     }
 }
+
+
+.product-wheretobuy {
+    background: #fff;
+    padding: 0 0 50px 0;
+    color: #fff;
+    text-align: center;
+}
+.product-wheretobuy .header-wrapper h2{
+   background:#fff;
+}
+
+.product-wheretobuy .find-a-dealer-btn .btn-primary
+{
+    background-color: #18214A;
+    color:#fff;
+    font-size: 16px;
+}
+.product-wheretobuy .find-a-dealer-btn .btn-primary:hover
+{
+    background-color: #286090;
+    color:#fff !important;
+}
+
+
+.product-brochure .btn-primary
+{
+    background-color: #18214A;
+    color:#fff;
+    font-size: 16px;
+}
+.product-brochure
+{
+    text-align: center;
+    padding:40px 0;
+    background: #D1D2D4;
+}
+.product-brochure .btn-primary:hover
+{
+    background-color: #286090;
+    color:#fff !important;
+}
