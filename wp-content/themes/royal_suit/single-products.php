@@ -545,7 +545,7 @@ if ($product_gallery_image != '') {
 <?php } ?>
 <!-- Product Where to buy
 ================================================== -->
-<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyBrjmQ-IA5gda1QUk9_cMYYIc0VWPrBUE0&sensor=false&libraries=places"></script>
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBrjmQ-IA5gda1QUk9_cMYYIc0VWPrBUE0&sensor=false&libraries=places"></script>
 <!--<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAlPCmqfGX5ftf7YX0UXrh-sY2ARCfyJMwAccreditations"></script>-->
 <!--<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBrjmQ-IA5gda1QUk9_cMYYIc0VWPrBUE0&callback=goma"></script>-->
 <input class="path_link" type="hidden" value="<?php echo bloginfo('template_url'); ?>"/>

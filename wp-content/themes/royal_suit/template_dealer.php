@@ -45,7 +45,7 @@ $mark_points = str_replace('&#039;', '', json_encode($mark_points));
 <link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/css/print.css" type="text/css" media="screen, print" />
 
 <script type="text/javascript" src="<?php echo get_template_directory_uri(); ?>/js/jquery.jscrollpane.min.js"></script>
-<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyBrjmQ-IA5gda1QUk9_cMYYIc0VWPrBUE0&sensor=false&libraries=places"></script>
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBrjmQ-IA5gda1QUk9_cMYYIc0VWPrBUE0&sensor=false&libraries=places"></script>
 
 <script type="text/javascript">
     $.ajax({ url:'http://maps.googleapis.com/maps/api/geocode/json?latlng=<?php echo $lati; ?>,<?php echo $longt; ?>&sensor=true',
