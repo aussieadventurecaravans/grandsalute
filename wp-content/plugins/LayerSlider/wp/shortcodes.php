@@ -140,7 +140,7 @@ class LS_Shortcode {
 		$slides = $slider['data'];
 		$id = $slider['id'];
 		$sliderID = 'layerslider_'.$id.'_'.self::$sliderCount;
-		$output = '';
+		$output = array();
 
 		// Include slider file
 		if(is_array($slides)) {
